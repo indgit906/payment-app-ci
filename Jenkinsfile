@@ -6,7 +6,10 @@ pipeline {
     }
     stages {
         stage('Build Artifact') {
-            steps { sh "./mvnw clean package -DskipTests" }
+            steps {
+                sh "chmod +x mvnw"
+                sh "./mvnw clean package -DskipTests"
+            }
         }
         stage('Docker Build & Push') {
             steps {
